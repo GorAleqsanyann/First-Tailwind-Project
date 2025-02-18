@@ -14,11 +14,17 @@ export default function ToDo() {
       setToDos([...toDos, newItem]);
     }
   }
+  console.log(toDos);
 
   function removeToDo(id) {
     setToDos([...toDos.filter((a) => a.id !== id)]);
   }
-  console.log(toDos);
+  function updateTodo(id) {
+    const newNameForTodo = prompt("Enter New name");
+    setToDos((state) =>
+      state.map((e) => (e.id === id ? { ...e, task: newNameForTodo } : e))
+    );
+  }
 
   return (
     <div className="w-full p-10 flex flex-col items-center ">
@@ -26,11 +32,17 @@ export default function ToDo() {
         <SetToDo addTask={addTask} toDos={toDos} />
         {toDos.length > 0 &&
           toDos.map((e) => {
-            return <ToDoItem key={e.id} todo={e} removeToDo={removeToDo} />;
+            return (
+              <ToDoItem
+                key={e.id}
+                todo={e}
+                removeToDo={removeToDo}
+                updateTodo={updateTodo}
+                setToDos={setToDos}
+              />
+            );
           })}
       </div>
     </div>
   );
 }
-
-//grel Tailwind

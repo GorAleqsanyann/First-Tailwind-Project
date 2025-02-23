@@ -10,11 +10,6 @@ export default function CardHome({ image, text, wiki }) {
         src={image}
         onClick={() => setShow((e) => !e)}
       />
-      {show && (
-        <label>
-          <a href={wiki}>{text}</a>
-        </label>
-      )}
     </div>
   );
 }

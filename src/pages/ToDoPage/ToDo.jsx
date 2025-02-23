@@ -10,6 +10,7 @@ export default function ToDo() {
       const newItem = {
         id: Math.random().toString(36).substr(2, 9),
         task: userInfo,
+        isComplete: false,
       };
       setToDos([...toDos, newItem]);
     }
@@ -22,7 +23,9 @@ export default function ToDo() {
   function updateTodo(id) {
     const newNameForTodo = prompt("Enter New name");
     setToDos((state) =>
-      state.map((e) => (e.id === id ? { ...e, task: newNameForTodo } : e))
+      state.map((e) =>
+        e.id === id ? { ...e, task: newNameForTodo } : { ...e }
+      )
     );
   }
 
@@ -38,7 +41,7 @@ export default function ToDo() {
                 todo={e}
                 removeToDo={removeToDo}
                 updateTodo={updateTodo}
-                setToDos={setToDos}
+                toDos={setToDos}
               />
             );
           })}
